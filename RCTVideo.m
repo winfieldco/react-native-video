@@ -578,6 +578,7 @@ static NSString *const playbackRate = @"rate";
     if( _player )
     {
         _playerViewController = [self createPlayerViewController:_player withPlayerItem:_playerItem];
+        [self setResizeMode:_resizeMode];
         [self addSubview:_playerViewController.view];
     }
 }
@@ -589,7 +590,8 @@ static NSString *const playbackRate = @"rate";
       _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
       _playerLayer.frame = self.bounds;
       _playerLayer.needsDisplayOnBoundsChange = YES;
-        
+      
+      [self setResizeMode:_resizeMode];
       [_playerLayer addObserver:self forKeyPath:readyForDisplayKeyPath options:NSKeyValueObservingOptionNew context:nil];
     
       [self.layer addSublayer:_playerLayer];
